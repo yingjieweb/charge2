@@ -37,6 +37,9 @@ function App() {
             <Route path="/statistics">
               <Statistics />
             </Route>
+            <Route path="*">
+              <NotFound />
+            </Route>
           </Switch>
         </div>
       </Router>
@@ -53,6 +56,10 @@ function Labels() {
 
 function Statistics() {
   return <h2>统计页</h2>;
+}
+
+function NotFound() {
+  return <h2>资源未找到</h2>;
 }
 
 export default App;
