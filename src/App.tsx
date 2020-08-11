@@ -7,12 +7,53 @@ import {
   Link,
   Redirect
 } from "react-router-dom";
+import styled from "styled-components";
+
+const Wrapper = styled.div`
+  border: 1px solid red;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+`
+const Main = styled.div`
+  border: 1px solid green;
+  flex-grow: 1;
+`
+const Nav = styled.div`
+  border: 1px solid blue;
+  > ul {
+    display: flex;
+    > li {
+      width: 33.3333%;
+      text-align: center;
+      padding: 16px;
+    }
+  }
+`
 
 function App() {
   return (
       <Router>
-        <div>
-          <nav>
+        <Wrapper>
+          <Main>
+            <Switch>
+              <Redirect exact from="/" to="/money"></Redirect>
+              <Route path="/money">
+                <Money />
+              </Route>
+              <Route path="/labels">
+                <Labels />
+              </Route>
+              <Route path="/statistics">
+                <Statistics />
+              </Route>
+              <Route path="*">
+                <NotFound />
+              </Route>
+            </Switch>
+          </Main>
+
+          <Nav>
             <ul>
               <li>
                 <Link to="/money">记账页</Link>
@@ -24,24 +65,8 @@ function App() {
                 <Link to="/statistics">统计页</Link>
               </li>
             </ul>
-          </nav>
-
-          <Switch>
-            <Redirect exact from="/" to="/money"></Redirect>
-            <Route path="/money">
-              <Money />
-            </Route>
-            <Route path="/labels">
-              <Labels />
-            </Route>
-            <Route path="/statistics">
-              <Statistics />
-            </Route>
-            <Route path="*">
-              <NotFound />
-            </Route>
-          </Switch>
-        </div>
+          </Nav>
+        </Wrapper>
       </Router>
   );
 }
