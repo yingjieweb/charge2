@@ -352,7 +352,6 @@ module.exports = function(webpackEnv) {
               test: /\.svg$/,
               use: [
                 { loader: 'svg-sprite-loader', options: {} },
-                'svg-transform-loader',
                 'svgo-loader'
               ]
             },
