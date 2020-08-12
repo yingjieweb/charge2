@@ -92,7 +92,8 @@
   "devDependencies": {
     "@types/react-router-dom": "^5.1.5",
     "node-sass": "npm:dart-sass@1.25.0",
-    "svg-sprite-loader": "^5.0.0"
+    "svg-sprite-loader": "^5.0.0",
+    "svgo-loader": "^2.2.1"
   },
   "jest": {
     "roots": [
