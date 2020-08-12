@@ -13,8 +13,16 @@ const NavContent = styled.div`
     display: flex;
     > li {
       width: 33.3333%;
+      padding: 4px 0;
       text-align: center;
-      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      .icon {
+        width: 24px;
+        height: 24px;
+      }
     }
   }
 `
@@ -24,19 +32,19 @@ const Nav = () => {
       <NavContent>
         <ul>
           <li>
-            <svg fill="red" className="icon">
+            <svg className="icon">
               <use xlinkHref="#money"></use>
             </svg>
             <Link to="/money">记账页</Link>
           </li>
           <li>
-            <svg fill="red" className="icon">
+            <svg className="icon">
               <use xlinkHref="#label"></use>
             </svg>
             <Link to="/labels">标签页</Link>
           </li>
           <li>
-            <svg fill="red" className="icon">
+            <svg className="icon">
               <use xlinkHref="#statistics"></use>
             </svg>
             <Link to="/statistics">统计页</Link>
