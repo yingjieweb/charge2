@@ -2,11 +2,9 @@ import styled from "styled-components";
 import {Link} from "react-router-dom";
 import React from "react";
 
-import money from 'assets/icons/money.svg'
-import label from 'assets/icons/label.svg'
-import statistics from 'assets/icons/statistics.svg'
-
-console.log(money, label, statistics)
+require('assets/icons/money.svg')
+require('assets/icons/label.svg');
+require('assets/icons/statistics.svg');
 
 const NavContent = styled.div`
   line-height: 24px;
