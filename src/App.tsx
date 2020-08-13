@@ -6,57 +6,52 @@ import {
   Route,
   Redirect
 } from "react-router-dom";
-import styled from "styled-components";
-import Nav from "./components/Nav";
-
-const Wrapper = styled.div`
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-`
-const Main = styled.div`
-  flex-grow: 1;
-`
-
+import Layout from "./components/Layout";
 
 function App() {
   return (
       <Router>
-        <Wrapper>
-          <Main>
-            <Switch>
-              <Redirect exact from="/" to="/money"></Redirect>
-              <Route path="/money">
-                <Money />
-              </Route>
-              <Route path="/labels">
-                <Labels />
-              </Route>
-              <Route path="/statistics">
-                <Statistics />
-              </Route>
-              <Route path="*">
-                <NotFound />
-              </Route>
-            </Switch>
-          </Main>
-
-          <Nav></Nav>
-        </Wrapper>
+        <Switch>
+          <Redirect exact from="/" to="/money"></Redirect>
+          <Route path="/money">
+            <Money/>
+          </Route>
+          <Route path="/labels">
+            <Labels/>
+          </Route>
+          <Route path="/statistics">
+            <Statistics/>
+          </Route>
+          <Route path="*">
+            <NotFound/>
+          </Route>
+        </Switch>
       </Router>
   );
 }
 
 function Money() {
-  return <h2>记账页</h2>;
+  return (
+      <Layout>
+        <h2>记账页</h2>;
+      </Layout>
+  )
 }
 
 function Labels() {
-  return <h2>标签页</h2>;
+  return (
+      <Layout>
+        <h2>标签页</h2>;
+      </Layout>
+  )
 }
 
 function Statistics() {
-  return <h2>统计页</h2>;
+  return (
+      <Layout>
+        <h2>统计页</h2>;
+      </Layout>
+  )
 }
 
 function NotFound() {
