@@ -3,8 +3,8 @@ import React from "react";
 
 function Labels() {
   return (
-      <Layout>
-        <h2>标签页</h2>;
+      <Layout title={'标签'}>
+        <h2>标签页</h2>
       </Layout>
   )
 }

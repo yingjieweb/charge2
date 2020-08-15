@@ -39,19 +39,19 @@ const Nav = () => {
           <li>
             <NavLink to="/money" activeClassName="selected">
               <Icon name="money"></Icon>
-              记账页
+              记账
             </NavLink>
           </li>
           <li>
             <NavLink to="/labels" activeClassName="selected">
               <Icon name="label"></Icon>
-              标签页
+              标签
             </NavLink>
           </li>
           <li>
             <NavLink to="/statistics" activeClassName="selected">
               <Icon name="statistics"></Icon>
-              统计页
+              统计
             </NavLink>
           </li>
         </ul>

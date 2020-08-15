@@ -3,8 +3,8 @@ import React from "react";
 
 function Money() {
   return (
-      <Layout>
-        <h2>记账页</h2>;
+      <Layout title={'记账'}>
+        <h2>记账页</h2>
       </Layout>
   )
 }

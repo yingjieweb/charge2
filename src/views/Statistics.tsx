@@ -3,8 +3,8 @@ import React from "react";
 
 function Statistics() {
   return (
-      <Layout>
-        <h2>统计页</h2>;
+      <Layout title={'统计'}>
+        <h2>统计页</h2>
       </Layout>
   )
 }
