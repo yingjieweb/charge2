@@ -22,9 +22,9 @@ const NavContent = styled.div`
           height: 24px;
         }
         &.selected {
-          color: #61DAFB;
+          color: #4FA9F2;
           .icon {
-            fill: #61DAFB;
+            fill: #4FA9F2;
           }
         }
       }
