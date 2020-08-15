@@ -12,7 +12,7 @@ const Main = styled.div`
 `
 const Title = styled.div`
   height: 38px;
-  background-color: #4FA9F2;
+  background-color: #00BCD4;
   box-shadow: 0 0 3px rgba(0, 0, 0, 0.25);
   display: flex;
   justify-content: center;
