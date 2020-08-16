@@ -8,16 +8,7 @@ import {NumberPadSection} from '../components/money/NumberPadSection'
 function Money() {
   return (
       <Layout title={'记账'}>
-        <TagsSection>
-          <ol>
-            <li>餐饮</li>
-            <li>购物</li>
-            <li>交通</li>
-            <li>娱乐</li>
-            <li>工资</li>
-          </ol>
-          <button>添加标签</button>
-        </TagsSection>
+        <TagsSection></TagsSection>
         <NotesSection>
           <label>
             <span>备注</span>
