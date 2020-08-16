@@ -8,6 +8,8 @@ const TagsSection:React.FC = () => {
     const newTagName = window.prompt('请输入新的标签名');
     if (newTagName !== null && newTagName !== ''){
       setTags([...tags, newTagName]);
+    }else if (newTagName !== ''){
+      window.alert('标签名不能为空');
     }
   }
   const onclickTag = (tag:string) => {
@@ -30,7 +32,7 @@ const Wrapper = styled.section`
   font-size: 14px;
   background: #FFFFFF;
   padding: 12px 10px 16px 20px;
-  height: calc(100vh - 499px);
+  height: calc(100vh - 491px);
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -57,5 +59,6 @@ const Wrapper = styled.section`
     border-bottom: 1px solid #999;
     margin-top: 8px;
     color: #999;
+    outline: none;
   }
 `;
