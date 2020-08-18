@@ -1,9 +1,15 @@
 import styled from 'styled-components';
 import React, {useState} from "react";
 
-const TagsSection:React.FC = () => {
-  const [tags, setTags] = useState<string[]>(['餐饮', '购物', '交通', '娱乐', '工资'])
-  const [selectedTag, setSelectedTag] = useState<string>('餐饮')
+type Props = {
+  value: string;
+  onChange: (selected: string) => void;
+}
+
+const TagsSection:React.FC<Props> = (props) => {
+  const [tags, setTags] = useState<string[]>(['餐饮', '购物', '交通', '娱乐', '工资']);
+
+  const selectedTag = props.value;
   const onAddTag = () => {
     const newTagName = window.prompt('请输入新的标签名');
     if (newTagName !== null && newTagName !== ''){
@@ -14,7 +20,7 @@ const TagsSection:React.FC = () => {
   }
   const onclickTag = (tag:string) => {
     if (tag !== selectedTag){
-      setSelectedTag(tag);
+      props.onChange(tag);
     }
   }
   return (
