@@ -3,7 +3,7 @@ import React, {useState} from "react";
 
 type Props = {
   value: string;
-  onChange: (selected: string) => void;
+  onChange: (tag: string) => void;
 }
 
 const TagsSection:React.FC<Props> = (props) => {

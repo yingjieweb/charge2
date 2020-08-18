@@ -1,13 +1,19 @@
 import styled from 'styled-components';
 import React, {useState} from "react";
 
-const NoteSection:React.FC = () => {
-  const [note, setNote] = useState('');
+type Props = {
+  value: string,
+  onChange: (note: string) => void
+}
+
+const NoteSection:React.FC<Props> = (props) => {
+  // const [note, setNote] = useState('');
+  const note = props.value;
   return (
       <Wrapper>
         <label>
           <span>备注</span>
-          <input type="text" placeholder="请输入账单备注" value={note} onChange={(event) => setNote(event.target.value)}/>
+          <input type="text" placeholder="请输入账单备注" value={note} onChange={(event) => props.onChange(event.target.value)}/>
         </label>
       </Wrapper>
   )
