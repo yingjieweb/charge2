@@ -12,6 +12,9 @@ function Money() {
     category: '-' as ('-' | '+'),
     amount: '0'
   })
+  const onChange = (obj: Partial<typeof selected>) => {
+    setSelected({...selected, ...obj})
+  }
   return (
       <Layout title={'记账'}>
         {selected.tag.toString()}
@@ -21,10 +24,10 @@ function Money() {
         {selected.category.toString()}
         <br/>
         {selected.amount.toString()}
-        <TagsSection value={selected.tag} onChange={(tag) => {setSelected({...selected, tag: tag})}}/>
-        <NoteSection value={selected.note} onChange={(note) => {setSelected({...selected, note: note})}}/>
-        <CategorySection value={selected.category} onChange={(category) => {setSelected({...selected, category: category})}}/>
-        <NumberPadSection value={selected.amount} onChange={(amount) => {setSelected({...selected, amount: amount})}}/>
+        <TagsSection value={selected.tag} onChange={(tag) => {onChange({tag})}}/>
+        <NoteSection value={selected.note} onChange={(note) => {onChange({note})}}/>
+        <CategorySection value={selected.category} onChange={(category) => {onChange({category})}}/>
+        <NumberPadSection value={selected.amount} onChange={(amount) => {onChange({amount})}}/>
       </Layout>
   )
 }
