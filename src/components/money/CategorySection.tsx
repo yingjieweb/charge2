@@ -1,13 +1,17 @@
 import styled from 'styled-components';
 import React, {useState} from "react";
 
-const CategorySection:React.FC = () => {
-  const [category, setCategory] = useState('-');// +/- : 收入/支出
+type Props = {
+  value: '+' | '-';
+  onChange: (category: '+' | '-') => void;
+}
+
+const CategorySection:React.FC<Props> = (props) => {
   return (
       <Wrapper>
         <ul>
-          <li className={category === '-' ? 'selected' : ''} onClick={() => {setCategory('-')}}>支出</li>
-          <li className={category === '+' ? 'selected' : ''} onClick={() => {setCategory('+')}}>收入</li>
+          <li className={props.value === '-' ? 'selected' : ''} onClick={() => {props.onChange('-')}}>支出</li>
+          <li className={props.value === '+' ? 'selected' : ''} onClick={() => {props.onChange('+')}}>收入</li>
         </ul>
       </Wrapper>
   )

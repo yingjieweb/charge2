@@ -16,7 +16,7 @@ function Money() {
       <Layout title={'记账'}>
         <TagsSection value={selected.tag} onChange={(tag) => {setSelected({...selected,tag: tag})}}/>
         <NoteSection value={selected.note} onChange={(note) => {setSelected({...selected, note:note})}}/>
-        <CategorySection></CategorySection>
+        <CategorySection value={selected.category} onChange={(category) => {setSelected({...selected, category: category})}}/>
         <NumberPadSection></NumberPadSection>
       </Layout>
   )
