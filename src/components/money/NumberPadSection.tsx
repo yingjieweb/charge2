@@ -1,8 +1,14 @@
 import styled from 'styled-components';
 import React, {useState} from "react";
 
-const NumberPadSection:React.FC = () => {
-  const [output, setOutput] = useState('0');
+type Props = {
+  value: string;
+  onChange: (amount: string) => void;
+}
+
+const NumberPadSection:React.FC<Props> = (props) => {
+  const output = props.value;
+
   const onClickNumberPad = (event: React.MouseEvent) => {
     let text = (event.target as HTMLButtonElement).textContent;
     if (text === null) return
@@ -18,25 +24,30 @@ const NumberPadSection:React.FC = () => {
       case '8':
       case '9':
         if (output === '0') {
-          setOutput(text);
+          props.onChange(text);
         } else {
-          setOutput(output + text);
+          props.onChange(output + text);
         }
+        break;
       case '.':
         if (output.indexOf('.') >= 0) {return output;}
-        setOutput(output + '.');
+        props.onChange(output + '.');
+        break;
       case '删除':
         if (output.length === 1) {
-          setOutput('0');
+          props.onChange('0');
         } else {
-          setOutput(output.slice(0, -1) || '0');
+          props.onChange(output.slice(0, -1) || '0');
         }
+        break;
       case '清空':
-        setOutput('0');
+        props.onChange('0');
+        break;
       case 'OK':
-        setOutput('OK');
+        props.onChange('OK');
       default:
-        setOutput('0');
+        props.onChange('0');
+        break;
     }
   }
   return (

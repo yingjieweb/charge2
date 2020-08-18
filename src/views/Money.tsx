@@ -10,14 +10,21 @@ function Money() {
     tag: '餐饮',
     note: '',
     category: '-' as ('-' | '+'),
-    amount: 0
+    amount: '0'
   })
   return (
       <Layout title={'记账'}>
-        <TagsSection value={selected.tag} onChange={(tag) => {setSelected({...selected,tag: tag})}}/>
-        <NoteSection value={selected.note} onChange={(note) => {setSelected({...selected, note:note})}}/>
+        {selected.tag.toString()}
+        <br/>
+        {selected.note.toString()}
+        <br/>
+        {selected.category.toString()}
+        <br/>
+        {selected.amount.toString()}
+        <TagsSection value={selected.tag} onChange={(tag) => {setSelected({...selected, tag: tag})}}/>
+        <NoteSection value={selected.note} onChange={(note) => {setSelected({...selected, note: note})}}/>
         <CategorySection value={selected.category} onChange={(category) => {setSelected({...selected, category: category})}}/>
-        <NumberPadSection></NumberPadSection>
+        <NumberPadSection value={selected.amount} onChange={(amount) => {setSelected({...selected, amount: amount})}}/>
       </Layout>
   )
 }
