@@ -18,6 +18,7 @@ const Title = styled.div`
   justify-content: center;
   align-items: center;
   color: white;
+  position: relative;
 `
 
 const Layout = (props: any) => {
