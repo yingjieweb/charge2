@@ -45,6 +45,7 @@ const NumberPadSection:React.FC<Props> = (props) => {
         break;
       case 'OK':
         props.onChange('OK');
+        break;
       default:
         props.onChange('0');
         break;

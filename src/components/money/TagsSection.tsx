@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import React, {useState} from "react";
+import {useTags} from "scripts/useTags";
 
 type Props = {
   value: string;
@@ -7,7 +8,8 @@ type Props = {
 }
 
 const TagsSection:React.FC<Props> = (props) => {
-  const [tags, setTags] = useState<string[]>(['餐饮', '购物', '交通', '娱乐', '工资']);
+  // const [tags, setTags] = useState<string[]>(['餐饮', '购物', '交通', '娱乐', '工资']);
+  const {tags, setTags} = useTags();
 
   const selectedTag = props.value;
   const onAddTag = () => {
