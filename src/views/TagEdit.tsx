@@ -2,6 +2,7 @@ import React from "react";
 import {useTags} from "../scripts/useTags";
 import {useParams} from "react-router-dom"
 import Layout from "../components/Layout";
+import { Button } from "components/Button";
 
 type Params = {
   routerTag: string;
