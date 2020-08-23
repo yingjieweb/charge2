@@ -4,6 +4,7 @@ import {useTags} from "scripts/useTags";
 import styled from "styled-components";
 import Icon from "components/Icon";
 import {Link} from "react-router-dom";
+import {Button} from "../components/Button";
 
 const TagList = styled.ol`
   font-size: 16px; 
@@ -23,22 +24,13 @@ const TagList = styled.ol`
       justify-content: space-between;
       align-items: center;
     }
-    > svg {
+    > .icon {
       width: 18px;
       height: 18px;
       fill: #666;
       margin-right: 16px;
     }
   }
-`;
-const Button = styled.button`
-  font-size: 16px;
-  color: white;
-  background: #767676;
-  border: none;
-  border-radius: 4px;
-  height: 40px;
-  padding: 0 16px;
 `;
 const Center = styled.div`
   display:flex;
@@ -48,7 +40,7 @@ const Center = styled.div`
 `;
 
 function Labels() {
-  const {tags, setTags} = useTags();
+  const {tags} = useTags();
   return (
       <Layout title={'标签'}>
         <TagList>
