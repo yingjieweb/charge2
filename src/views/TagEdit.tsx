@@ -3,6 +3,7 @@ import {useTags} from "../scripts/useTags";
 import {useParams} from "react-router-dom"
 import Layout from "../components/Layout";
 import { Button } from "components/Button";
+import {Input} from "../components/Input";
 
 type Params = {
   routerTag: string;
@@ -14,12 +15,8 @@ const TagEdit:React.FC = () => {
   const matchedTag = findTag(routerTag);
   return (
       <Layout title='编辑标签' leftIconName='left'>
-        <div>{matchedTag}</div>
         <div>
-          <label>
-            <span>标签名</span>
-            <input type="text" placeholder="请输入标签名"/>
-          </label>
+          <Input></Input>
         </div>
         <div>
           <Button>保存</Button>
