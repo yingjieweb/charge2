@@ -28,7 +28,7 @@ const Layout = (props: any) => {
       <Wrapper>
         <Main>
           <Title>
-            <Icon name={props.leftIconName}></Icon>
+            <Icon name={props.leftIconName} onClick={() => {window.history.back()}}></Icon>
             <span>{props.title}</span>
             <Icon name={props.rightIconName}></Icon>
           </Title>
