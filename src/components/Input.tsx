@@ -1,11 +1,16 @@
 import React from "react";
 import styled from "styled-components";
 
-const Input:React.FC = () => {
+type Props = {
+  label: string;
+} & React.InputHTMLAttributes<HTMLInputElement>
+
+const Input: React.FC<Props> = (props) => {
+  const {label, children, ...rest} = props;
   return (
       <Label>
-        <span>标签名</span>
-        <input type="text" placeholder="请输入标签名"/>
+        <span>{props.label}</span>
+        <input {...rest}/>
       </Label>
   )
 }
