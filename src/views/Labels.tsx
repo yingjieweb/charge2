@@ -6,6 +6,28 @@ import Icon from "components/Icon";
 import {Link} from "react-router-dom";
 import {Button} from "../components/Button";
 
+function Labels() {
+  const {tags, addTag} = useTags();
+  return (
+      <Layout title={'标签'}>
+        <TagList>
+          {tags.map((tag) =>
+              <li key={tag}>
+                <Link to={`/tag/${tag}`}>
+                  <span className="oneLine">{tag}</span>
+                  <Icon name="right"></Icon>
+                </Link>
+              </li>
+          )}
+        </TagList>
+        <Center>
+          <Button onClick={() => {addTag()}}>新建标签</Button>
+        </Center>
+      </Layout>
+  )
+}
+export default Labels;
+
 const TagList = styled.ol`
   font-size: 16px; 
   padding-left: 16px;
@@ -38,26 +60,3 @@ const Center = styled.div`
   align-items: center;
   margin-top: 28px;
 `;
-
-function Labels() {
-  const {tags} = useTags();
-  return (
-      <Layout title={'标签'}>
-        <TagList>
-          {tags.map((tag) =>
-              <li key={tag}>
-                <Link to={`/tag/${tag}`}>
-                  <span className="oneLine">{tag}</span>
-                  <Icon name="right"></Icon>
-                </Link>
-              </li>
-          )}
-        </TagList>
-        <Center>
-          <Button>新建标签</Button>
-        </Center>
-      </Layout>
-  )
-}
-
-export default Labels;

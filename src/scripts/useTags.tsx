@@ -2,15 +2,23 @@ import {useState} from "react";
 
 const useTags = () => {
   const [tags, setTags] = useState<string[]>(['餐饮', '购物', '交通', '娱乐', '工资']);
+  const addTag = () => {
+    let newTag = window.prompt('请输入新的标签名');
+    if (newTag === null || newTag === ''){
+      window.alert('新标签名不能为空');
+    }else if (tags.indexOf(newTag) >= 0){
+      window.alert('当前标签已存在');
+    }else {
+      setTags([...tags, newTag]);
+    }
+  }
   const findTag = (tagParams:string) => {return tags.filter(tag => tag === tagParams)[0]};
-  const updateTag = (matchedTag:string, newTag:string) => {
+  const saveTag = (routerTag:string, newTag:string) => {
     console.log(newTag);
-    console.log(matchedTag);
-    setTags(tags.map(tag => {
-      return tag === matchedTag ? newTag : tag;
+    setTags(tags.map((tag) => {
+      return tag === routerTag ? newTag : tag;
     }))
     console.log(tags)
-
 
     /*const tagsClone = JSON.parse(JSON.stringify(tags));
     let matchedTagIndex = tagsClone.indexOf(matchedTag);
@@ -23,16 +31,7 @@ const useTags = () => {
     setTags(tags.filter(item => item !== matchedTag));
     console.log(tags);
   }
-  const saveTag = () => {
-    const tagsClone = JSON.parse(JSON.stringify(tags));
-    let emptyStrIndex = tagsClone.indexOf('');
-    tagsClone.splice(emptyStrIndex, 1);
-    setTags(tagsClone);
-    alert('保存成功！');
-    window.history.back();
-
-  }
-  return {tags, setTags, findTag, updateTag, saveTag, deleteTag};
+  return {tags, setTags, addTag, findTag, saveTag, deleteTag};
 }
 
 export {useTags}
