@@ -11,7 +11,7 @@ type Params = {
 }
 
 const TagEdit:React.FC = (props) => {
-  const {findTag, updateTag,saveTag, deleteTag} = useTags();
+  const {findTag, updateTag, saveTag, deleteTag} = useTags();
   let {routerTag} = useParams<Params>();
   const matchedTag = findTag(routerTag);
   const onChange: ChangeEventHandler<HTMLInputElement> = (event) => {
@@ -23,8 +23,8 @@ const TagEdit:React.FC = (props) => {
           <Input label="标签名" type="text" placeholder="请输入新的标签名" defaultValue={matchedTag} onChange={onChange}></Input>
         </Wrapper>
         <ButtonsWrapper>
-          <Button onClick={() => {saveTag()}}>保存</Button>
-          <Button onClick={() => {deleteTag()}}>删除</Button>
+          {/*<Button onClick={() => {saveTag()}}>保存</Button>
+          <Button onClick={() => {deleteTag(matchedTag)}}>删除</Button>*/}
         </ButtonsWrapper>
       </Layout>
   )
