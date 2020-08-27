@@ -1,7 +1,14 @@
-import {useState} from "react";
+import {useEffect, useState} from "react";
 
 const useTags = () => {
-  const [tags, setTags] = useState<string[]>(['餐饮', '购物', '交通', '娱乐', '工资']);
+  const [tags, setTags] = useState<string[]>([]); //"['餐饮', '购物', '交通', '娱乐', '工资']"
+  useEffect(() => { //[] 模拟 ComponentDidMount() 生命周期
+    setTags(JSON.parse(window.localStorage.getItem('tags') || '[]')); //页面第一次加载没有localstorage？
+    setTags(['餐饮', '购物', '交通', '娱乐', '工资']);
+  }, [])
+  useEffect(() => {
+    localStorage.setItem('tags',JSON.stringify(tags))
+  }, [tags])
   const addTag = () => {
     let newTag = window.prompt('请输入新的标签名');
     if (newTag === null || newTag === ''){
