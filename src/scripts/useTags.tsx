@@ -13,25 +13,20 @@ const useTags = () => {
     }
   }
   const findTag = (tagParams:string) => {return tags.filter(tag => tag === tagParams)[0]};
-  const saveTag = (routerTag:string, newTag:string) => {
-    console.log(newTag);
-    setTags(tags.map((tag) => {
-      return tag === routerTag ? newTag : tag;
-    }))
-    console.log(tags)
-
-    /*const tagsClone = JSON.parse(JSON.stringify(tags));
-    let matchedTagIndex = tagsClone.indexOf(matchedTag);
-    tagsClone.splice(matchedTagIndex, 1);
-    tagsClone.push(newTag);
-    setTags(tagsClone);*/
+  const findTagId = (tagName:string) => {return tags.indexOf(tagName)};
+  const saveTag = (matchedTagId:number, newTag:string) => {
+    let tagsClone = tags;
+    tagsClone.splice(matchedTagId,1, newTag);
+    setTags(tagsClone);
   };
-  const deleteTag = (matchedTag:string) => {
-    console.log('delete');
-    setTags(tags.filter(item => item !== matchedTag));
-    console.log(tags);
+  const deleteTag = (matchedTagId:number) => {
+    let tagsClone = tags;
+    tagsClone.splice(matchedTagId,1);
+    setTags(tagsClone);
+    alert('删除成功');
+    window.history.back();
   }
-  return {tags, setTags, addTag, findTag, saveTag, deleteTag};
+  return {tags, setTags, addTag, findTag, findTagId, saveTag, deleteTag};
 }
 
 export {useTags}
