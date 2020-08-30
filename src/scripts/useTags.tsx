@@ -4,6 +4,7 @@ let isFirstLoad = true; //标记是否第一次加载页面！
 
 const useTags = () => {
   const [tags, setTags] = useState<string[]>(JSON.parse(window.localStorage.getItem('tags') || `[]`));
+
   useEffect(() => {
     if (isFirstLoad){  //页面第一次加载没有localstorage？
       setTags(['餐饮', '购物', '交通', '娱乐', '工资']);
@@ -13,14 +14,13 @@ const useTags = () => {
   let count = useRef(0);
   useEffect(() => {
     count.current ++;
-    console.log(count.current);
   })
   useEffect(() => {
     if (count.current > 1){
-      console.log('存数据了---'+'当前的tags是:' + tags);
       localStorage.setItem('tags', JSON.stringify(tags));
     }
   }, [tags]);
+
   const addTag = () => {
     let newTag = window.prompt('请输入新的标签名');
     if (newTag === null || newTag === ''){
@@ -31,7 +31,6 @@ const useTags = () => {
       let tagsClone = tags
       tagsClone.push(newTag);
       setTags([...tagsClone]);
-      console.log(tags)
       localStorage.setItem('tags', JSON.stringify(tags));
     }
   }
@@ -41,7 +40,6 @@ const useTags = () => {
     let tagsClone = tags;
     tagsClone.splice(matchedTagId,1, newTag);
     setTags(tagsClone);
-    console.log(tags)
     localStorage.setItem('tags', JSON.stringify(tags));
     alert('保存成功');
     window.history.back();
