@@ -16,7 +16,7 @@ const useTags = () => {
     count.current ++;
   })
   useEffect(() => {
-    if (count.current > 1){
+    if (count.current > 1){ //tags 第一次改变的时候不需要存数据
       localStorage.setItem('tags', JSON.stringify(tags));
     }
   }, [tags]);
