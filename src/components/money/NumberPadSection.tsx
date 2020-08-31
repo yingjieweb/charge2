@@ -4,6 +4,7 @@ import React from "react";
 type Props = {
   value: string;
   onChange: (amount: string) => void;
+  onOk: () => void;
 }
 
 const NumberPadSection:React.FC<Props> = (props) => {
@@ -44,7 +45,7 @@ const NumberPadSection:React.FC<Props> = (props) => {
         props.onChange('0');
         break;
       case 'OK':
-        props.onChange('OK');
+        props.onOk();
         break;
       default:
         props.onChange('0');
