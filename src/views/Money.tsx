@@ -31,7 +31,6 @@ function Money() {
   }
   return (
       <Layout title={'记账'}>
-        {JSON.stringify(selected)}
         <TagsSection value={selected.tag} onChange={(tag) => {onChange({tag})}}/>
         <NoteSection value={selected.note} onChange={(note) => {onChange({note})}}/>
         <CategorySection value={selected.category} onChange={(category) => {onChange({category})}}/>
