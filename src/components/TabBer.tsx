@@ -1,6 +1,7 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { NavLink  } from "react-router-dom";
 import styled from "styled-components";
+import Icon from "./Icon"
 
 const Nav = styled.div`
   line-height: 24px;
@@ -14,15 +15,31 @@ const Nav = styled.div`
     padding: 4px 0;
     justify-content: center;
     align-items: center;
+      .icon {
+        width: 24px;      
+        height: 24px;
+      }
+      &.selected {
+        color: #00BCD4;
+        .icon {
+          fill: #00BCD4;
+        }
+      }
   }
 `
 
 const TabBer = () => {
   return (
       <Nav>
-          <Link to="/money">记账</Link>
-          <Link to="/labels">标签</Link>
-          <Link to="/statistics">统计</Link>
+          <NavLink  to="/money" className={({ isActive }) => (isActive ? " selected" : "")}>
+            <Icon name={'money'}/>记账
+          </NavLink >
+          <NavLink  to="/labels" className={({ isActive }) => (isActive ? " selected" : "")}>
+            <Icon name={'label'}/>标签
+          </NavLink >
+          <NavLink  to="/statistics" className={({ isActive }) => (isActive ? " selected" : "")}>
+            <Icon name={'statistics'}/>统计
+          </NavLink >
       </Nav>
   )
 }
