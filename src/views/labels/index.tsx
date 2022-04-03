@@ -1,7 +1,7 @@
 import React from "react";
-import Layout from "../components/Layout";
+import Layout from "../../components/Layout";
 
-function Labels() {
+function Index() {
   return (
       <Layout title={'标签'}>
         Labels
@@ -9,4 +9,4 @@ function Labels() {
   )
 }
 
-export default Labels;
+export default Index;

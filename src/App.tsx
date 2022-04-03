@@ -1,10 +1,10 @@
 import React from 'react';
 import {HashRouter, Routes, Route, Navigate} from "react-router-dom";
 
-import Money from "./views/Money";
-import Labels from "./views/Labels";
-import TagEdit from "./views/TagEdit";
-import Statistics from "./views/Statistics";
+import Money from "./views/money";
+import Labels from "./views/labels";
+import LabelDetail from "./views/labels/detail";
+import Statistics from "./views/statistics";
 import NotFound from "./views/NotFound";
 
 function App() {
@@ -14,7 +14,7 @@ function App() {
           <Route path="/" element={<Navigate to="/money" replace/>}/>
           <Route path="/money" element={<Money/>}/>
           <Route path="/labels" element={<Labels/>}/>
-          <Route path="/tag/:tagId" element={<TagEdit/>}/>
+          <Route path="/tag/:tagId" element={<LabelDetail/>}/>
           <Route path="/statistics" element={<Statistics/>}/>
           <Route path="*" element={<NotFound/>}/>
         </Routes>

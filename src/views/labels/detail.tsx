@@ -1,8 +1,8 @@
 import React from "react";
 
-function TagEdit() {
+function Detail() {
   return (
       <div>TagEdit</div>
   )
 }
-export default TagEdit;
+export default Detail;

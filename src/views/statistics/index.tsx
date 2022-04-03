@@ -1,7 +1,7 @@
 import React from "react";
-import Layout from "../components/Layout";
+import Layout from "../../components/Layout";
 
-function Statistics() {
+function Index() {
   return (
       <Layout title={'统计'}>
         Statistics
@@ -9,4 +9,4 @@ function Statistics() {
   )
 }
 
-export default Statistics;
+export default Index;
