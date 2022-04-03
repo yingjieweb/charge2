@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink  } from "react-router-dom";
+import {NavLink} from "react-router-dom";
 import styled from "styled-components";
 import Icon from "./Icon"
 
@@ -31,15 +31,15 @@ const Nav = styled.div`
 const TabBer = () => {
   return (
       <Nav>
-          <NavLink  to="/money" className={({ isActive }) => (isActive ? " selected" : "")}>
-            <Icon name={'money'}/>记账
-          </NavLink >
-          <NavLink  to="/labels" className={({ isActive }) => (isActive ? " selected" : "")}>
-            <Icon name={'label'}/>标签
-          </NavLink >
-          <NavLink  to="/statistics" className={({ isActive }) => (isActive ? " selected" : "")}>
-            <Icon name={'statistics'}/>统计
-          </NavLink >
+        <NavLink to="/money" className={({isActive}) => (isActive ? " selected" : "")}>
+          <Icon name={'money'}/>记账
+        </NavLink>
+        <NavLink to="/labels" className={({isActive}) => (isActive ? " selected" : "")}>
+          <Icon name={'label'}/>标签
+        </NavLink>
+        <NavLink to="/statistics" className={({isActive}) => (isActive ? " selected" : "")}>
+          <Icon name={'statistics'}/>统计
+        </NavLink>
       </Nav>
   )
 }
