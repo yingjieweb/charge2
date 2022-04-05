@@ -7,9 +7,14 @@ type Props = {
 }
 
 const TagsSection:React.FC<Props> = (props) => {
+  const selectedTag = props.value;
   const [tags, setTags] = useState<string[]>(['餐饮', '购物', '交通', '娱乐', '工资']);
 
-  const selectedTag = props.value;
+  const onclickTag = (tag:string) => {
+    if (tag !== selectedTag){
+      props.onChange(tag);
+    }
+  }
   const onAddTag = () => {
     const newTagName = window.prompt('请输入新的标签名');
     if (newTagName !== null && newTagName !== ''){
@@ -18,15 +23,17 @@ const TagsSection:React.FC<Props> = (props) => {
       window.alert('标签名不能为空');
     }
   }
-  const onclickTag = (tag:string) => {
-    if (tag !== selectedTag){
-      props.onChange(tag);
-    }
-  }
+
   return (
       <Wrapper>
         <ol>
-          {tags.map(tag => <li key={tag} onClick={() => {onclickTag(tag)}} className={selectedTag === tag ? 'selected' : ''}>{tag}</li>)}
+          {tags.map(tag =>
+              <li key={tag}
+                  onClick={() => {onclickTag(tag)}}
+                  className={selectedTag === tag ? 'selected' : ''}>
+                {tag}
+              </li>)
+          }
         </ol>
         <button onClick={onAddTag}>添加标签</button>
       </Wrapper>
