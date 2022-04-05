@@ -12,6 +12,7 @@ const NoteSection:React.FC<Props> = (props) => {
   const onChange: ChangeEventHandler<HTMLInputElement> = (event) => {
     props.onChange(event.target.value)
   };
+
   return (
       <Wrapper>
         <Input label="备注" type="text" placeholder="请输入账单备注" value={note} onChange={onChange}/>
