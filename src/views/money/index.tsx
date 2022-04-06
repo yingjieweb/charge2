@@ -22,7 +22,7 @@ function Money() {
       <Layout title={'记账'}>
         <TagsSection value={selected.tag} onChange={(tag) => {onChange({tag})}}/>
         <NoteSection value={selected.note} onChange={(note) => {onChange({note})}}/>
-        <CategorySection value={'+'} onChange={() => {}}/>
+        <CategorySection value={selected.category} onChange={(category) => {onChange({category})}}/>
         <NumberPadSection value={'1111'}/>
       </Layout>
   )
