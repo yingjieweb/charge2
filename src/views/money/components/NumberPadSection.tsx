@@ -3,15 +3,64 @@ import styled from 'styled-components';
 
 type Props = {
   value: string;
+  onChange: (amount: string) => void;
+  onOk: () => void;
 }
 
 const NumberPadSection:React.FC<Props> = (props) => {
+  const output = props.value;
+
+  const onClickNumberPad = (event: React.MouseEvent) => {
+    let text = (event.target as HTMLButtonElement).textContent;
+    if (text === null) return
+    switch (text) {
+      case '0':
+      case '1':
+      case '2':
+      case '3':
+      case '4':
+      case '5':
+      case '6':
+      case '7':
+      case '8':
+      case '9':
+        if (output === '0') {
+          props.onChange(text);
+        } else {
+          props.onChange(output + text);
+        }
+        break;
+      case '.':
+        if (output.indexOf('.') >= 0) {
+          return output;
+        }
+        props.onChange(output + '.');
+        break;
+      case '删除':
+        if (output.length === 1) {
+          props.onChange('0');
+        } else {
+          props.onChange(output.slice(0, -1) || '0');
+        }
+        break;
+      case '清空':
+        props.onChange('0');
+        break;
+      case 'OK':
+        props.onOk();
+        break;
+      default:
+        props.onChange('0');
+        break;
+    }
+  }
+
   return (
       <Wrapper>
         <div className="output">
           {props.value}￥
         </div>
-        <div className="pad clearfix">
+        <div className="pad clearfix" onClick={onClickNumberPad}>
           <button>1</button>
           <button>2</button>
           <button>3</button>

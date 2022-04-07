@@ -15,7 +15,20 @@ function Money() {
   })
 
   const onChange = (obj: Partial<typeof selected>) => {
+    if (obj.amount && obj.amount.length > 16) {
+      obj.amount = obj.amount.slice(0, 16)
+    }
     setSelected({...selected, ...obj})
+  }
+  const submit = () => {
+    alert('您有一笔账单已被记录在册！');
+    setSelected({ // UI刷新
+      tag: '餐饮',
+      note: '',
+      category: '-' as ('-' | '+'),
+      amount: '0',
+      createdTime: new Date()
+    })
   }
 
   return (
@@ -23,7 +36,7 @@ function Money() {
         <TagsSection value={selected.tag} onChange={(tag) => {onChange({tag})}}/>
         <NoteSection value={selected.note} onChange={(note) => {onChange({note})}}/>
         <CategorySection value={selected.category} onChange={(category) => {onChange({category})}}/>
-        <NumberPadSection value={'1111'}/>
+        <NumberPadSection value={selected.amount} onChange={(amount) => {onChange({amount})}} onOk={submit}/>
       </Layout>
   )
 }
