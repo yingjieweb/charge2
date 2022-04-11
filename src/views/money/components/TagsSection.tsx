@@ -3,24 +3,23 @@ import styled from 'styled-components';
 import {useTags} from '../../../scripts/useTags'
 
 type Props = {
-  value: string;
-  onChange: (tag: string) => void;
+  value: number;
+  onChange: (tag: number) => void;
 }
 
 const TagsSection:React.FC<Props> = (props) => {
-  const selectedTag = props.value;
-  // const [tags, setTags] = useState<string[]>(['餐饮', '购物', '交通', '娱乐', '工资']);
+  const selectedTagId = props.value;
   const {tags, setTags} = useTags();
 
-  const onclickTag = (tag:string) => {
-    if (tag !== selectedTag){
-      props.onChange(tag);
+  const onclickTag = (tagId:number) => {
+    if (tagId !== selectedTagId){
+      props.onChange(tagId);
     }
   }
   const onAddTag = () => {
     const newTagName = window.prompt('请输入新的标签名');
     if (newTagName !== null && newTagName !== ''){
-      setTags([...tags, newTagName]);
+      setTags([...tags, {tagId: Math.random(), tagName: newTagName}]);
     }else if (newTagName !== ''){
       window.alert('标签名不能为空');
     }
@@ -30,9 +29,9 @@ const TagsSection:React.FC<Props> = (props) => {
       <Wrapper>
         <ol>
           {tags.map(tag =>
-              <li key={tag}
-                  onClick={() => {onclickTag(tag)}}
-                  className={selectedTag === tag ? 'selected' : ''}>
+              <li key={tag.tagId}
+                  onClick={() => {onclickTag(tag.tagId)}}
+                  className={selectedTagId === tag.tagId ? 'selected' : ''}>
                 {tag}
               </li>)
           }

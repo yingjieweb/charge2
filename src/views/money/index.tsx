@@ -7,7 +7,7 @@ import {NumberPadSection} from "./components/NumberPadSection";
 
 function Money() {
   const [selected, setSelected] = useState({
-    tag: '餐饮',
+    tagId: 1,
     note: '',
     category: '-' as ('-' | '+'),
     amount: '0',
@@ -23,7 +23,7 @@ function Money() {
   const submit = () => {
     alert('您有一笔账单已被记录在册！');
     setSelected({ // UI刷新
-      tag: '餐饮',
+      tagId: 1,
       note: '',
       category: '-' as ('-' | '+'),
       amount: '0',
@@ -33,7 +33,7 @@ function Money() {
 
   return (
       <Layout title={'记账'}>
-        <TagsSection value={selected.tag} onChange={(tag) => {onChange({tag})}}/>
+        <TagsSection value={selected.tagId} onChange={(tagId) => {onChange({tagId})}}/>
         <NoteSection value={selected.note} onChange={(note) => {onChange({note})}}/>
         <CategorySection value={selected.category} onChange={(category) => {onChange({category})}}/>
         <NumberPadSection value={selected.amount} onChange={(amount) => {onChange({amount})}} onOk={submit}/>

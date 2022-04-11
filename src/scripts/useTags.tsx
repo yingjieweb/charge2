@@ -1,17 +1,23 @@
 import {useState} from "react"
 
 const useTags = () => {
-  const [tags, setTags] = useState<string[]>(['餐饮', '购物', '交通', '娱乐', '工资'])
+  const [tags, setTags] = useState<{tagId: number, tagName: string}[]>([
+    {tagId: 1, tagName: '餐饮'},
+    {tagId: 2, tagName: '购物'},
+    {tagId: 3, tagName: '交通'},
+    {tagId: 4, tagName: '娱乐'},
+    {tagId: 5, tagName: '工资'}
+  ])
 
   const addTag = () => {
     let newTag = window.prompt('请输入新的标签名');
     if (newTag === null || newTag === '') {
       window.alert('新标签名不能为空');
-    } else if (tags.indexOf(newTag) >= 0) {
+    } else if (tags.some(item => item.tagName === newTag)) {
       window.alert('当前标签已存在');
     } else {
       let tagsClone = tags
-      tagsClone.push(newTag);
+      tagsClone.push({tagId: Math.random(), tagName: newTag});
       setTags([...tagsClone]);
     }
   }

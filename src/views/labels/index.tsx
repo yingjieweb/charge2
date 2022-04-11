@@ -13,9 +13,9 @@ function Labels() {
       <Layout title={'标签'}>
         <TagList>
           {tags.map((tag) =>
-              <li key={tag}>
-                <NavLink to={`/tag/${tag}`}>
-                  <span className="oneLine">{tag}</span>
+              <li key={tag.tagId}>
+                <NavLink to={`/tag/${tag.tagId}`}>
+                  <span className="oneLine">{tag.tagName}</span>
                   <Icon name="right"/>
                 </NavLink>
               </li>
