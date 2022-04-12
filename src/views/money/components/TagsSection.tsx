@@ -1,6 +1,7 @@
 import React from "react";
 import styled from 'styled-components';
 import {useTags} from '../../../scripts/useTags'
+import {generateId} from "../../../scripts/generateId";
 
 type Props = {
   value: number;
@@ -19,7 +20,7 @@ const TagsSection:React.FC<Props> = (props) => {
   const onAddTag = () => {
     const newTagName = window.prompt('请输入新的标签名');
     if (newTagName !== null && newTagName !== ''){
-      setTags([...tags, {tagId: Math.random(), tagName: newTagName}]);
+      setTags([...tags, {tagId: generateId(), tagName: newTagName}]);
     }else if (newTagName !== ''){
       window.alert('标签名不能为空');
     }
@@ -32,7 +33,7 @@ const TagsSection:React.FC<Props> = (props) => {
               <li key={tag.tagId}
                   onClick={() => {onclickTag(tag.tagId)}}
                   className={selectedTagId === tag.tagId ? 'selected' : ''}>
-                {tag}
+                {tag.tagName}
               </li>)
           }
         </ol>

@@ -1,12 +1,13 @@
 import {useState} from "react"
+import {generateId} from "./generateId"
 
 const useTags = () => {
   const [tags, setTags] = useState<{tagId: number, tagName: string}[]>([
-    {tagId: 1, tagName: '餐饮'},
-    {tagId: 2, tagName: '购物'},
-    {tagId: 3, tagName: '交通'},
-    {tagId: 4, tagName: '娱乐'},
-    {tagId: 5, tagName: '工资'}
+    {tagId: generateId(), tagName: '餐饮'},
+    {tagId: generateId(), tagName: '购物'},
+    {tagId: generateId(), tagName: '交通'},
+    {tagId: generateId(), tagName: '娱乐'},
+    {tagId: generateId(), tagName: '工资'}
   ])
 
   const addTag = () => {
@@ -17,7 +18,7 @@ const useTags = () => {
       window.alert('当前标签已存在');
     } else {
       let tagsClone = tags
-      tagsClone.push({tagId: Math.random(), tagName: newTag});
+      tagsClone.push({tagId: generateId(), tagName: newTag});
       setTags([...tagsClone]);
     }
   }
