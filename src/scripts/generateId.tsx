@@ -1,7 +1,7 @@
 let id = 1
 
 const generateId = () => {
-    return ++id
+    return id++
 }
 
 export {generateId}
