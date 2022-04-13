@@ -24,8 +24,11 @@ const useTags = () => {
       setTags([...tagsClone]);
     }
   }
+  const findTag = (id: number) => {
+    return tags.filter(item => item.tagId === id)[0]
+  }
 
-  return {tags, setTags, addTag}
+  return {tags, setTags, addTag, findTag}
 }
 
 export {useTags}
