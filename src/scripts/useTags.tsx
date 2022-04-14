@@ -24,11 +24,19 @@ const useTags = () => {
       setTags([...tagsClone]);
     }
   }
+  const editTag = (tagId: number, newTagName: string) => {
+    setTags(tags.map(item => {
+      if (item.tagId === tagId) {
+        item.tagName = newTagName
+      }
+      return item
+    }))
+  }
   const findTag = (id: number) => {
     return tags.filter(item => item.tagId === id)[0]
   }
 
-  return {tags, setTags, addTag, findTag}
+  return {tags, setTags, addTag, editTag, findTag}
 }
 
 export {useTags}
