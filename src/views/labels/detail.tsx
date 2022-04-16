@@ -7,7 +7,7 @@ import {Button} from "../../components/Button";
 import {Input} from "../../components/Input";
 
 function Detail() {
-  const {findTag, editTag} = useTags()
+  const {findTag, deleteTag, editTag} = useTags()
 
   const {tagId} = useParams()
   const navigate = useNavigate()
@@ -21,10 +21,15 @@ function Detail() {
     }
   }
 
-  const submit = () => {
+  const handleSubmit = () => {
     editTag(parseInt(tagId!), currentTag.tagName)
     navigate(-1)
     alert('标签修改成功')
+  }
+  const handleDelete = () => {
+    deleteTag(parseInt(tagId!))
+    // navigate(-1)
+    // alert('标签删除成功')
   }
 
   return (
@@ -34,14 +39,14 @@ function Detail() {
         </Wrapper>
 
         <Center>
-          <Button onClick={() => {submit()}}>确定</Button>
+          <Button onClick={() => {handleSubmit()}}>确定</Button>
+          <Button onClick={() => {handleDelete()}}>删除</Button>
         </Center>
       </Layout>
   )
 }
 
 export default Detail;
-
 
 const Wrapper = styled.section`
   background: #f5f5f5;
@@ -50,7 +55,7 @@ const Wrapper = styled.section`
 `;
 const Center = styled.div`
   display:flex;
-  justify-content: center;
+  justify-content: space-evenly;
   align-items: center;
   margin-top: 28px;
 `;

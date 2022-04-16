@@ -24,10 +24,13 @@ const useTags = () => {
       setTags([...tagsClone]);
     }
   }
+  const deleteTag = (tagId: number) => {
+    setTags([...tags.filter(item => item.tagId !== tagId)])
+  }
   const editTag = (tagId: number, newTagName: string) => {
     setTags(tags.map(item => {
       if (item.tagId === tagId) {
-        item.tagName = newTagName
+        return {tagId, tagName: newTagName}
       }
       return item
     }))
@@ -36,7 +39,7 @@ const useTags = () => {
     return tags.filter(item => item.tagId === id)[0]
   }
 
-  return {tags, setTags, addTag, editTag, findTag}
+  return {tags, setTags, addTag, deleteTag, editTag, findTag}
 }
 
 export {useTags}
