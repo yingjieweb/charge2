@@ -1,4 +1,4 @@
-import {useState} from "react"
+import {useEffect, useRef, useState} from "react"
 import {generateId} from "./generateId"
 
 const initialTags = [
@@ -10,7 +10,17 @@ const initialTags = [
 ]
 
 const useTags = () => {
-  const [tags, setTags] = useState<{tagId: number, tagName: string}[]>(initialTags)
+  const [tags, setTags] = useState<{tagId: number, tagName: string}[]>([])
+
+  const freshCount = useRef(0) // 标记生命周期： created or mounted
+  useEffect(() => {
+    freshCount.current += 1
+    setTags(JSON.parse(window.localStorage.getItem('tags') || JSON.stringify(initialTags)))
+  }, []) // mounted
+  useEffect(() => {
+    if (freshCount.current < 1) return // 忽视 tags 初始化那次 -> 类似 Vue 非 deep watch
+    window.localStorage.setItem('tags', JSON.stringify(tags))
+  }, [tags]) // deep watch tags change
 
   const addTag = () => {
     let newTag = window.prompt('请输入新的标签名');
