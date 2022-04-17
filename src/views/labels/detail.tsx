@@ -28,9 +28,8 @@ function Detail() {
   }
   const handleDelete = () => {
     deleteTag(parseInt(tagId!))
-    // navigate(-1)
-    window.history.back()
-    // alert('标签删除成功')
+    navigate(-1)
+    alert('标签删除成功')
   }
 
   return (

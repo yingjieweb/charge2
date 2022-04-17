@@ -1,21 +1,19 @@
 import {useEffect, useRef, useState} from "react"
 import {generateId} from "./generateId"
 
-const initialTags = [
-  {tagId: generateId(), tagName: '餐饮'},
-  {tagId: generateId(), tagName: '购物'},
-  {tagId: generateId(), tagName: '交通'},
-  {tagId: generateId(), tagName: '娱乐'},
-  {tagId: generateId(), tagName: '工资'}
-]
-
 const useTags = () => {
   const [tags, setTags] = useState<{tagId: number, tagName: string}[]>([])
 
   const freshCount = useRef(0) // 标记生命周期： created or mounted
   useEffect(() => {
     freshCount.current += 1
-    setTags(JSON.parse(window.localStorage.getItem('tags') || JSON.stringify(initialTags)))
+    setTags(JSON.parse(window.localStorage.getItem('tags') || JSON.stringify([
+      {tagId: generateId(), tagName: '餐饮'},
+      {tagId: generateId(), tagName: '购物'},
+      {tagId: generateId(), tagName: '交通'},
+      {tagId: generateId(), tagName: '娱乐'},
+      {tagId: generateId(), tagName: '工资'}
+    ])))
   }, []) // mounted
   useEffect(() => {
     if (freshCount.current < 1) return // 忽视 tags 初始化那次 -> 类似 Vue 非 deep watch
