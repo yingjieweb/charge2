@@ -29,13 +29,14 @@ function Detail() {
   const handleDelete = () => {
     deleteTag(parseInt(tagId!))
     // navigate(-1)
+    window.history.back()
     // alert('标签删除成功')
   }
 
   return (
       <Layout title={'编辑标签'}>
         <Wrapper>
-          <Input label="备注" type="text" placeholder="请输入账单备注" ref={inputRef} defaultValue={currentTag.tagName} onBlur={onBlur}/>
+          <Input label="备注" type="text" placeholder="请输入账单备注" ref={inputRef} defaultValue={currentTag?.tagName || ''} onBlur={onBlur}/>
         </Wrapper>
 
         <Center>

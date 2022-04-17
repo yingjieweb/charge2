@@ -25,7 +25,7 @@ const useTags = () => {
     }
   }
   const deleteTag = (tagId: number) => {
-    setTags([...tags.filter(item => item.tagId !== tagId)])
+    setTags(tags.filter(item => item.tagId !== tagId))
   }
   const editTag = (tagId: number, newTagName: string) => {
     setTags(tags.map(item => {
