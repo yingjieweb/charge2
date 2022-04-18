@@ -4,6 +4,7 @@ import {TagsSection} from "./components/TagsSection";
 import {NoteSection} from "./components/NoteSection";
 import {CategorySection} from "./components/CategorySection";
 import {NumberPadSection} from "./components/NumberPadSection";
+import {useRecord} from "../../scripts/useRecord";
 
 function Money() {
   const [selected, setSelected] = useState({
@@ -20,7 +21,12 @@ function Money() {
     }
     setSelected({...selected, ...obj})
   }
+  const {addRecord} = useRecord();
   const submit = () => {
+    if (selected.amount === '0') {
+      return alert('请输入支出或收入的具体金额 !')
+    }
+    addRecord(selected);
     alert('您有一笔账单已被记录在册！');
     setSelected({ // UI刷新
       tagId: 1,
