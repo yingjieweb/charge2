@@ -44,10 +44,11 @@ const TagsSection:React.FC<Props> = (props) => {
 export {TagsSection};
 
 const Wrapper = styled.section`
-  font-size: 14px;
-  background: #FFFFFF;
-  padding: 12px 10px 16px 20px;
   height: calc(100vh - 491px);
+  padding: 12px 10px 16px 20px;
+  background: #FFFFFF;
+  overflow: scroll;
+  font-size: 14px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
