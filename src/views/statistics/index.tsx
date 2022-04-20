@@ -1,7 +1,9 @@
 import React, {useState} from "react";
 import Layout from "../../components/Layout";
-import {CategorySection} from "../money/components/CategorySection";
 import {Balance} from "./components/Balance";
+import {PieChart} from "./components/PieChart";
+import {CategorySection} from "../money/components/CategorySection";
+import {LineChart} from "./components/LineChart";
 
 function Statistics() {
   const [category, setCategory] = useState('+' as '-' | '+')
@@ -9,9 +11,9 @@ function Statistics() {
   return (
       <Layout title={'统计'}>
         <Balance/>
-        {/*饼图*/}
+        <PieChart/>
         <CategorySection value={category} onChange={(category) => setCategory(category)}/>
-        {/*折线图*/}
+        <LineChart/>
       </Layout>
   )
 }
