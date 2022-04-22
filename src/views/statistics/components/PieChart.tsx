@@ -8,11 +8,9 @@ function PieChart() {
     let myChart = echarts.init(chartDom!);
     let option = {
       tooltip: {
-        trigger: 'item'
-      },
-      legend: {
-        top: '5%',
-        left: 'center'
+        trigger: 'item',
+        triggerOn: 'click',
+        showContent: true,
       },
       series: [
         {
@@ -26,18 +24,17 @@ function PieChart() {
             borderWidth: 2
           },
           label: {
-            show: false,
-            position: 'center'
+            show: true,
+            position: 'outside'
           },
           emphasis: {
             label: {
               show: true,
-              fontSize: '40',
               fontWeight: 'bold'
             }
           },
           labelLine: {
-            show: false
+            show: true
           },
           data: [
             { value: 1048, name: 'Search Engine' },
@@ -53,9 +50,7 @@ function PieChart() {
   })
 
   return (
-      <Section id={'pie-chart'}>
-        <div>1111</div>
-      </Section>
+      <Section id={'pie-chart'}/>
   )
 }
 
@@ -63,9 +58,5 @@ export {PieChart}
 
 const Section = styled.section`
   height: calc((100vh - 260px) / 2);
-  div {
-    width: 100%;
-    height: 100%;
-  }
 `;
 

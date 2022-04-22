@@ -11,8 +11,12 @@ function LineChart() {
         type: 'category',
         data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
       },
-      yAxis: {
-        type: 'value'
+      yAxis: {type: 'value'},
+      grid: {
+        top: "15%",
+        right: "6%",
+        bottom: "15%",
+        left: "12%"
       },
       series: [
         {
@@ -25,9 +29,7 @@ function LineChart() {
   })
 
   return (
-      <Section id={'line-chart'}>
-        <div>1111</div>
-      </Section>
+      <Section id={'line-chart'}/>
   )
 }
 
@@ -35,9 +37,5 @@ export {LineChart}
 
 const Section = styled.section`
   height: calc((100vh - 260px) / 2);
-  div {
-    width: 100%;
-    height: 100%;
-  }
 `;
 
