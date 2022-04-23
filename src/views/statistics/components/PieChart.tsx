@@ -2,11 +2,18 @@ import * as echarts from 'echarts';
 import styled from "styled-components";
 import {useEffect} from "react";
 
-function PieChart() {
+type Props = {
+  data: {
+    value: number,
+    name: string
+  }[];
+}
+
+const PieChart:React.FC<Props> = (props) => {
   useEffect(() => {
     let chartDom = document.getElementById('pie-chart');
     let myChart = echarts.init(chartDom!);
-    let option = {
+    myChart.setOption({
       tooltip: {
         trigger: 'item',
         triggerOn: 'click',
@@ -36,17 +43,10 @@ function PieChart() {
           labelLine: {
             show: true
           },
-          data: [
-            { value: 1048, name: 'Search Engine' },
-            { value: 735, name: 'Direct' },
-            { value: 580, name: 'Email' },
-            { value: 484, name: 'Union Ads' },
-            { value: 300, name: 'Video Ads' }
-          ]
+          data: props.data
         }
       ]
-    };
-    option && myChart.setOption(option);
+    });
   })
 
   return (

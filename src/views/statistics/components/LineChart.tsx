@@ -1,15 +1,20 @@
-import * as echarts from 'echarts';
+import React, {useEffect} from "react";
 import styled from "styled-components";
-import {useEffect} from "react";
+import * as echarts from 'echarts';
 
-function LineChart() {
+type Props = {
+  xAxisData: string[];
+  yAxisData: number[];
+}
+
+const LineChart:React.FC<Props> = (props) => {
   useEffect(() => {
     let chartDom = document.getElementById('line-chart');
     let myChart = echarts.init(chartDom!);
-    let option = {
+    myChart.setOption({
       xAxis: {
         type: 'category',
-        data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+        data: props.xAxisData
       },
       yAxis: {type: 'value'},
       grid: {
@@ -20,12 +25,11 @@ function LineChart() {
       },
       series: [
         {
-          data: [150, 230, 224, 218, 135, 147, 260],
+          data: props.yAxisData,
           type: 'line'
         }
       ]
-    }
-    option && myChart.setOption(option);
+    })
   })
 
   return (
