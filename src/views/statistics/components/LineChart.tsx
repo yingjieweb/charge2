@@ -14,7 +14,7 @@ const LineChart:React.FC<Props> = (props) => {
     myChart.setOption({
       xAxis: {
         type: 'category',
-        data: props.xAxisData
+        data: props.xAxisData // example: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
       },
       yAxis: {type: 'value'},
       grid: {
@@ -25,7 +25,7 @@ const LineChart:React.FC<Props> = (props) => {
       },
       series: [
         {
-          data: props.yAxisData,
+          data: props.yAxisData, // example: [150, 230, 224, 218, 135, 147, 260]
           type: 'line'
         }
       ]

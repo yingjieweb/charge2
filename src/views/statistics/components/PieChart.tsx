@@ -43,7 +43,7 @@ const PieChart:React.FC<Props> = (props) => {
           labelLine: {
             show: true
           },
-          data: props.data
+          data: props.data // example: [{ name: 'Engine', value: 1024 }, ...]
         }
       ]
     });
