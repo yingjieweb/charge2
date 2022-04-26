@@ -14,12 +14,12 @@ const useRecord = () => {
   const freshCount = useRef(0) // 标记生命周期： created or mounted
   useEffect(() => {
     freshCount.current += 1
-    setRecords(JSON.parse(localStorage.getItem('records') || '[]'));
-  }, [])
+    setRecords(JSON.parse(window.localStorage.getItem('records') || '[]'))
+  }, []) // mounted
   useEffect(() => {
     if (freshCount.current < 1) return // 忽视 records 初始化那次 -> 类似 Vue 非 deep watch
-    localStorage.setItem('records', JSON.stringify(records))
-  }, [records])
+    window.localStorage.setItem('records', JSON.stringify(records))
+  }, [records]) // deep watch records change
 
   const addRecord = (record: RecordItem) => {
     setRecords([...records, record])
