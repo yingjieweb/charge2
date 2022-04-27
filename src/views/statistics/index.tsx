@@ -5,11 +5,18 @@ import {PieChart} from "./components/PieChart";
 import {CategorySection} from "../money/components/CategorySection";
 import {LineChart} from "./components/LineChart";
 import {useRecord} from "../../scripts/useRecord";
-// import dayjs from 'dayjs
+import {useTags} from "../../scripts/useTags";
+// import dayjs from 'dayjs'
+
+type PieDataItem = {
+  name: string;
+  value: number;
+}
 
 function Statistics() {
-  const [category, setCategory] = useState('+' as '-' | '+')
-  const {records} = useRecord();
+  const [category, setCategory] = useState('-' as '-' | '+')
+  const {records} = useRecord()
+  const {findTag} = useTags()
 
   // let currentTime = dayjs(new Date()).format('YYYY-MM-DD HH:mm:ss')
   // dayjs(currentTime).daysInMonth() // 如何展示最近三十天
@@ -18,18 +25,23 @@ function Statistics() {
 
   let income = 0
   let spending = 0
+  let incomePieData:PieDataItem[] = []
+  let spendingPieData:PieDataItem[] = []
   records.map((item) => {
     if (item.category === '+') {
       income += parseInt(item.amount)
+      incomePieData.push({
+        name: findTag(item.tagId).tagName,
+        value: parseInt(item.amount)
+      })
     } else {
       spending += parseInt(item.amount)
+      spendingPieData.push({
+        name: findTag(item.tagId).tagName,
+        value: parseInt(item.amount)
+      })
     }
   })
-
-  let pieData = [
-    { value: 735, name: 'Direct' },
-    { value: 580, name: 'Email' }
-  ]
 
   return (
       <Layout title={'统计'}>
@@ -49,7 +61,7 @@ function Statistics() {
             </div>
           </div>
         </Total>
-        <PieChart data={pieData}/>
+        <PieChart data={category === '+' ? incomePieData : spendingPieData}/>
         <CategorySection value={category} onChange={(category) => setCategory(category)}/>
         <LineChart xAxisData={['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']} yAxisData={[150, 230, 224, 218, 135, 147, 260]}/>
       </Layout>
