@@ -90,6 +90,7 @@
     ]
   },
   "devDependencies": {
+    "@types/echarts": "^4.9.14",
     "@types/react-router-dom": "^5.3.3",
     "@types/styled-components": "^5.1.24",
     "@types/webpack-env": "^1.16.3",
