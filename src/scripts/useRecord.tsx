@@ -5,7 +5,7 @@ type RecordItem = {
   note: string;
   category: '-' | '+';
   amount: string;
-  createdTime?: Date;
+  createdTime: Date;
 }
 
 const useRecord = () => {
