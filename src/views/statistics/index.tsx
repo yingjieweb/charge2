@@ -19,9 +19,7 @@ function Statistics() {
   const {findTag} = useTags()
 
   // let currentTime = dayjs(new Date()).format('YYYY-MM-DD HH:mm:ss')
-  // dayjs(currentTime).daysInMonth() // 如何展示最近三十天
-  // 不需要获取连续的三十天
-  // 根据record 得到数据，然后补充之前的剩下的三十天
+  // dayjs(currentTime).daysInMonth() // 最近三十天
 
   let income = 0
   let spending = 0
@@ -30,16 +28,26 @@ function Statistics() {
   records.map((item) => {
     if (item.category === '+') {
       income += parseInt(item.amount)
-      incomePieData.push({
-        name: findTag(item.tagId).tagName,
-        value: parseInt(item.amount)
-      })
+      let repeatIndex = incomePieData.findIndex(it => it.name === findTag(item.tagId).tagName)
+      if (repeatIndex >= 0) {
+        incomePieData[repeatIndex].value += parseInt(item.amount)
+      } else {
+        incomePieData.push({
+          name: findTag(item.tagId).tagName,
+          value: parseInt(item.amount)
+        })
+      }
     } else {
       spending += parseInt(item.amount)
-      spendingPieData.push({
-        name: findTag(item.tagId).tagName,
-        value: parseInt(item.amount)
-      })
+      let repeatIndex = spendingPieData.findIndex(it => it.name === findTag(item.tagId).tagName)
+      if (repeatIndex >= 0) {
+        spendingPieData[repeatIndex].value += parseInt(item.amount)
+      } else {
+        spendingPieData.push({
+          name: findTag(item.tagId).tagName,
+          value: parseInt(item.amount)
+        })
+      }
     }
   })
 

@@ -18,6 +18,7 @@ const PieChart:React.FC<Props> = (props) => {
         trigger: 'item',
         triggerOn: 'click',
         showContent: true,
+        formatter: '{b}: {c}￥<br />占比: {d}%'
       },
       series: [
         {
