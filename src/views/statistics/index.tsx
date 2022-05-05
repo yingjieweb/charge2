@@ -6,11 +6,18 @@ import {CategorySection} from "../money/components/CategorySection";
 import {LineChart} from "./components/LineChart";
 import {useRecord} from "../../scripts/useRecord";
 import {useTags} from "../../scripts/useTags";
-// import dayjs from 'dayjs'
+import dayjs from 'dayjs'
 
 type PieDataItem = {
   name: string;
   value: number;
+}
+type RecordItem = {
+  tagId: number;
+  note: string;
+  category: '-' | '+';
+  amount: string;
+  createdTime: Date;
 }
 
 function Statistics() {
@@ -18,13 +25,17 @@ function Statistics() {
   const {records} = useRecord()
   const {findTag} = useTags()
 
-  // let currentTime = dayjs(new Date()).format('YYYY-MM-DD HH:mm:ss')
-  // dayjs(currentTime).daysInMonth() // 最近三十天
-
   let income = 0
   let spending = 0
+  let spendingDateAmounts:RecordItem[] = []
   let incomePieData:PieDataItem[] = []
   let spendingPieData:PieDataItem[] = []
+  let lineXAxisData:string[] = []
+  let incomeLineYAxisData:number[] = []
+  let spendingLineYAxisData:number[] = []
+  for (let i=0; i<30; i++) {
+    lineXAxisData.unshift(dayjs(new Date()).subtract(i, 'day').format('MM/DD'))
+  }
   records.map((item) => {
     if (item.category === '+') {
       income += parseInt(item.amount)
@@ -51,6 +62,25 @@ function Statistics() {
     }
   })
 
+  let spendingRecords = records.filter(item => item.category === '-')
+  spendingDateAmounts = spendingRecords.reduce((previous:RecordItem[], current) => {
+    if (previous.length === 0 || dayjs(previous[previous.length-1].createdTime).format('MM/DD') !== dayjs(current.createdTime).format('MM/DD')) {
+      previous.push(current)
+    } else {
+      previous[previous.length-1].amount = (parseInt(previous[previous.length-1].amount) + parseInt(current.amount)).toString()
+      console.log(previous)
+    }
+    return previous
+  }, [])
+  lineXAxisData.map(item => {
+    let incomeFindIndex = spendingDateAmounts.findIndex(it => item === dayjs(it.createdTime).format('MM/DD'))
+    if (incomeFindIndex >= 0) {
+      spendingLineYAxisData.push(parseInt(spendingDateAmounts[incomeFindIndex].amount))
+    } else {
+      spendingLineYAxisData.push(0)
+    }
+  })
+
   return (
       <Layout title={'统计'}>
         <Total>
@@ -71,7 +101,7 @@ function Statistics() {
         </Total>
         <PieChart data={category === '+' ? incomePieData : spendingPieData}/>
         <CategorySection value={category} onChange={(category) => setCategory(category)}/>
-        <LineChart xAxisData={['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']} yAxisData={[150, 230, 224, 218, 135, 147, 260]}/>
+        <LineChart xAxisData={lineXAxisData} yAxisData={category === '+' ? incomeLineYAxisData : spendingLineYAxisData}/>
       </Layout>
   )
 }
