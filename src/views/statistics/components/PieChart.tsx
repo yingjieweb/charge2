@@ -4,8 +4,8 @@ import {useEffect} from "react";
 
 type Props = {
   data: {
-    value: number,
-    name: string
+    name: string;
+    value: number;
   }[];
 }
 
