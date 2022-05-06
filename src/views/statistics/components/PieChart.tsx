@@ -1,6 +1,6 @@
-import * as echarts from 'echarts';
+import React, {useEffect} from "react";
 import styled from "styled-components";
-import {useEffect} from "react";
+import * as echarts from 'echarts';
 
 type Props = {
   data: {
@@ -9,10 +9,14 @@ type Props = {
   }[];
 }
 
+let myChart:any
 const PieChart:React.FC<Props> = (props) => {
   useEffect(() => {
     let chartDom = document.getElementById('pie-chart');
-    let myChart = echarts.init(chartDom!);
+    myChart = echarts.init(chartDom!);
+  }, [])
+  useEffect(() => {
+    console.log('props.data', props.data)
     myChart.setOption({
       tooltip: {
         trigger: 'item',
@@ -43,14 +47,17 @@ const PieChart:React.FC<Props> = (props) => {
           labelLine: {
             show: true
           },
-          data: props.data // example: [{ name: 'Engine', value: 1024 }, ...]
+          data: props.data
         }
       ]
-    });
-  })
+    })
+  }, [props.data])
 
   return (
-      <Section id={'pie-chart'}/>
+      <div>
+        {JSON.stringify(props.data)}
+        <Section id={'pie-chart'}/>
+      </div>
   )
 }
 
