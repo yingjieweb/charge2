@@ -53,38 +53,40 @@ const Statistics:React.FC = () => {
     setPieChartData(pieChartData)
   }, [category, records])
 
-
-  // let spendingDateAmounts:RecordItem[] = []
-  // let lineXAxisData:string[] = []
-  // let incomeLineYAxisData:number[] = []
-  // let spendingLineYAxisData:number[] = []
-  // for (let i=0; i<30; i++) {
-  //   lineXAxisData.unshift(dayjs(new Date()).subtract(i, 'day').format('MM/DD'))
-  // }
-  // let spendingRecords = records.filter(item => item.category === '-')
-  // spendingDateAmounts = spendingRecords.reduce((previous:RecordItem[], current) => {
-  //   if (previous.length === 0 || dayjs(previous[previous.length-1].createdTime).format('MM/DD') !== dayjs(current.createdTime).format('MM/DD')) {
-  //     previous.push(current)
-  //   } else {
-  //     previous[previous.length-1].amount = (parseInt(previous[previous.length-1].amount) + parseInt(current.amount)).toString()
-  //   }
-  //   return previous
-  // }, [])
-  // lineXAxisData.map(item => {
-  //   let incomeFindIndex = spendingDateAmounts.findIndex(it => item === dayjs(it.createdTime).format('MM/DD'))
-  //   if (incomeFindIndex >= 0) {
-  //     spendingLineYAxisData.push(parseInt(spendingDateAmounts[incomeFindIndex].amount))
-  //   } else {
-  //     spendingLineYAxisData.push(0)
-  //   }
-  // })
+  let lineXAxisData:string[] = []
+  let [lineYAxisData, setLineYAxisData] = useState<number[]>([])
+  for (let i=0; i<30; i++) {
+    lineXAxisData.unshift(dayjs(new Date()).subtract(i, 'day').format('MM/DD'))
+  }
+  useEffect(() => {
+    let lineYAxisData:number[] = []
+    let dateRecords:RecordItem[] = []
+    let currentRecords = records.filter(item => item.category === category)
+    dateRecords = currentRecords.reduce((previous:RecordItem[], current) => {
+      if (previous.length === 0 || dayjs(previous[previous.length-1].createdTime).format('MM/DD') !== dayjs(current.createdTime).format('MM/DD')) {
+        previous.push(current)
+      } else {
+        previous[previous.length-1].amount = (parseInt(previous[previous.length-1].amount) + parseInt(current.amount)).toString()
+      }
+      return previous
+    }, [])
+    lineXAxisData.map(item => {
+      let incomeFindIndex = dateRecords.findIndex(it => item === dayjs(it.createdTime).format('MM/DD'))
+      if (incomeFindIndex >= 0) {
+        lineYAxisData.push(parseInt(dateRecords[incomeFindIndex].amount))
+      } else {
+        lineYAxisData.push(0)
+      }
+    })
+    setLineYAxisData(lineYAxisData)
+  }, [category, records])
 
   return (
       <Layout title={'统计'}>
         <Balance income={income} spending={spending}/>
         <PieChart data={pieChartData}/>
         <CategorySection value={category} onChange={(category) => {setCategory(category)}}/>
-        {/*<LineChart xAxisData={lineXAxisData} yAxisData={category === '+' ? incomeLineYAxisData : spendingLineYAxisData}/>*/}
+        <LineChart xAxisData={lineXAxisData} yAxisData={lineYAxisData}/>
       </Layout>
   )
 }

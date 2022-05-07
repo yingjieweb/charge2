@@ -7,11 +7,20 @@ type Props = {
   yAxisData: number[];
 }
 
+let myChart:any
 const LineChart:React.FC<Props> = (props) => {
   useEffect(() => {
     let chartDom = document.getElementById('line-chart');
-    let myChart = echarts.init(chartDom!);
+    myChart = echarts.init(chartDom!);
+  }, [])
+  useEffect(() => {
     myChart.setOption({
+      tooltip: {
+        trigger: 'item',
+        triggerOn: 'click',
+        showContent: true,
+        formatter: '{c}￥'
+      },
       xAxis: {
         type: 'category',
         axisTick: {
@@ -34,7 +43,7 @@ const LineChart:React.FC<Props> = (props) => {
         }
       ]
     })
-  })
+  }, [props.yAxisData])
 
   return (
       <Section id={'line-chart'}/>
