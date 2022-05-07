@@ -16,7 +16,6 @@ const PieChart:React.FC<Props> = (props) => {
     myChart = echarts.init(chartDom!);
   }, [])
   useEffect(() => {
-    console.log('props.data', props.data)
     myChart.setOption({
       tooltip: {
         trigger: 'item',
@@ -55,7 +54,6 @@ const PieChart:React.FC<Props> = (props) => {
 
   return (
       <div>
-        {JSON.stringify(props.data)}
         <Section id={'pie-chart'}/>
       </div>
   )

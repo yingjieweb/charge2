@@ -21,9 +21,10 @@ type RecordItem = {
 }
 
 const Statistics:React.FC = () => {
-  const [category, setCategory] = useState('-' as '-' | '+')
   const {records} = useRecord()
   const {findTag} = useTags()
+  const [pieChartData, setPieChartData] = useState<PieDataItem[]>([])
+  const [category, setCategory] = useState('-' as '-' | '+')
 
   let income = 0
   let spending = 0
@@ -35,8 +36,8 @@ const Statistics:React.FC = () => {
     }
   })
 
-  let pieChartData:PieDataItem[] = []
   useEffect(() => {
+    let pieChartData:PieDataItem[] = []
     let currentRecords = records.filter(item => item.category === category)
     currentRecords.map(item => {
       let repeatIndex = pieChartData.findIndex(it => it.name === findTag(item.tagId).tagName)
@@ -49,7 +50,7 @@ const Statistics:React.FC = () => {
         })
       }
     })
-    console.log(pieChartData)
+    setPieChartData(pieChartData)
   }, [category, records])
 
 
