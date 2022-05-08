@@ -53,6 +53,6 @@ const LineChart:React.FC<Props> = (props) => {
 export {LineChart}
 
 const Section = styled.section`
-  height: calc((100vh - 260px) / 2);
+  height: calc((100vh - 276px) / 2);
 `;
 

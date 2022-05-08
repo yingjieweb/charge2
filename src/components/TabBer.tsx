@@ -3,9 +3,28 @@ import {NavLink} from "react-router-dom";
 import styled from "styled-components";
 import Icon from "./Icon"
 
+const TabBer = () => {
+  return (
+      <Nav>
+        <NavLink to="/money" className={({isActive}) => (isActive ? " selected" : "")}>
+          <Icon name={'money'}/>记账
+        </NavLink>
+        <NavLink to="/labels" className={({isActive}) => (isActive ? " selected" : "")}>
+          <Icon name={'label'}/>标签
+        </NavLink>
+        <NavLink to="/statistics" className={({isActive}) => (isActive ? " selected" : "")}>
+          <Icon name={'statistics'}/>统计
+        </NavLink>
+      </Nav>
+  )
+}
+
+export default TabBer;
+
 const Nav = styled.div`
   line-height: 24px;
   box-shadow: 0 0 3px rgba(0, 0, 0, 0.25);
+  z-index: 2;
   display:flex;
   > a {
     width: 33.3333%;
@@ -27,21 +46,3 @@ const Nav = styled.div`
       }
   }
 `
-
-const TabBer = () => {
-  return (
-      <Nav>
-        <NavLink to="/money" className={({isActive}) => (isActive ? " selected" : "")}>
-          <Icon name={'money'}/>记账
-        </NavLink>
-        <NavLink to="/labels" className={({isActive}) => (isActive ? " selected" : "")}>
-          <Icon name={'label'}/>标签
-        </NavLink>
-        <NavLink to="/statistics" className={({isActive}) => (isActive ? " selected" : "")}>
-          <Icon name={'statistics'}/>统计
-        </NavLink>
-      </Nav>
-  )
-}
-
-export default TabBer;

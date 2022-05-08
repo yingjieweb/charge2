@@ -3,8 +3,21 @@ import styled from "styled-components";
 
 import TabBer from "./TabBer";
 
+const Layout = (props: any) => {
+  return (
+      <Container>
+          <Header>{props.title}</Header>
+          <Main>{props.children}</Main>
+          <TabBer/>
+      </Container>
+  )
+}
+
+export default Layout;
+
 const Container = styled.div`
   height: 100vh;
+  background-color:#fff;
   display: flex;
   flex-direction: column;
 `
@@ -20,17 +33,6 @@ const Header = styled.header`
 `
 const Main = styled.div`
   flex-grow: 1;
+  max-height: calc(100vh - 94px);
+  overflow-y: auto;
 `
-
-
-const Layout = (props: any) => {
-  return (
-      <Container>
-          <Header>{props.title}</Header>
-          <Main>{props.children}</Main>
-          <TabBer/>
-      </Container>
-  )
-}
-
-export default Layout;

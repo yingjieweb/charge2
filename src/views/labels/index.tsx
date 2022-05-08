@@ -31,8 +31,8 @@ function Labels() {
 export default Labels;
 
 const TagList = styled.ol`
-  font-size: 16px; 
   padding-left: 16px;
+  font-size: 16px; 
   > li{
     min-height: 44px;
     display: flex;
