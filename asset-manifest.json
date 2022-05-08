@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/charge2/static/css/main.d21d3405.css",
+    "main.js": "/charge2/static/js/main.0c0c09a2.js",
+    "index.html": "/charge2/index.html",
+    "main.d21d3405.css.map": "/charge2/static/css/main.d21d3405.css.map",
+    "main.0c0c09a2.js.map": "/charge2/static/js/main.0c0c09a2.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.d21d3405.css",
+    "static/js/main.0c0c09a2.js"
+  ]
+}
