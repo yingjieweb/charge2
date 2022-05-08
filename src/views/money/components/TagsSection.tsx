@@ -47,21 +47,26 @@ const Wrapper = styled.section`
   height: calc(100vh - 491px);
   padding: 12px 10px 16px 20px;
   background: #FFFFFF;
-  overflow: scroll;
+  overflow: auto;
   font-size: 14px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   > ol {
+    max-width: 100%;
     > li{
       display:inline-block;
       height: 24px;
-      line-height: 24px;
-      border-radius: 12px;
-      background: #d9d9d9;
+      max-width: 100%;
       padding: 0 15px;
       margin-right: 10px;
       margin-top: 6px;
+      border-radius: 12px;
+      background: #d9d9d9;
+      line-height: 24px;
+      white-space: nowrap;  /* 设置文字在一行显示，不能换行 */  
+      overflow: hidden;    /* 文字长度超出限定宽度，则隐藏超出的内容 */
+      text-overflow: ellipsis;/* 规定当文本溢出时，显示省略符号来代表被修剪的文本 */
       &.selected {
         background: #00BCD4;
         color: white;
